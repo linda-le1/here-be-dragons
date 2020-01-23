@@ -22,7 +22,12 @@ class NytimesTest < Minitest::Test
   end
 
   def test_it_can_get_all_stories_with_subsection_of_politics
-    binding.pry
+    result = []
+    @hash[:results].map do |x|
+      if x[:subsection] == "Politics"
+        result << x
+      end
+    end
     assert result.is_a? (Array)
     assert_equal 6, result.count
     assert_equal "Congressional G.O.P. Agenda Quietly Falls Into Place Even as Trump Steals the Spotlight",
